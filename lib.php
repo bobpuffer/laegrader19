@@ -985,6 +985,10 @@ class grade_report_laegrader extends grade_report_grader {
                             $scaleopt[$i] = $scaleoption;
                         }
 
+                        if (! $grade->is_hidden() && $gradeval <> null && $this->accuratetotals) {
+                			$this->grades[$userid][$this->gtree->parents[$grade->itemid]->id]->cat_item[$grade->itemid] = $gradeval;
+							$this->grades[$userid][$this->gtree->parents[$grade->itemid]->id]->cat_max[$grade->itemid] = $grade->rawgrademax;
+				   		}
                         if ($quickgrading and $grade->is_editable()) {
                             $oldval = empty($gradeval) ? -1 : $gradeval;
                             if (empty($item->outcomeid)) {
